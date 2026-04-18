@@ -61,4 +61,8 @@ spec:
 #kubectl get svc -n roboshop
 
 #helm updgrade catalogue --set deployment.imageVersion=1.4.0  --version 0.0.1 description upgrading to 1.4.0 .
+#kubectl get deployment catalogue -o yaml
+
+#helm rollback catalogue
+
 
