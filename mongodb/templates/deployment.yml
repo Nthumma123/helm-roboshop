@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+  namespace: roboshop
+  #these labels are replicaset labels 
+  labels:
+    project: roboshop
+    tier: db
+    component: mongodb
+    environment: dev
+spec:
+  replicas: {{ .Values.deployment.replicas}}
+  selector:
+  #using these labels replicaset will select the pods to which it will route the traffic. These are called selector labels. These are used by replicaset to select the pods to which it will route the traffic. These are used by replicaset to create pods.
+    matchLabels:
+      project: roboshop
+      tier: db
+      component: mongodb
+      environment: dev
+# This is pod definition. This is called pod template. This is used by replicaset to create pods.
+  #pod is subset of replicaset 
+  template:
+    metadata:
+      labels:
+        project: roboshop
+        tier: db
+        component: mongodb
+        environment: dev
+    spec:
+      containers:
+      - name: mongodb
+        image: "{{ .Values.deployment.imageName }}:{{ .Values.deployment.imageVersion }}"
+
+    #kubectl create namespace roboshop
+    #kubens namespace roboshop
+    #helm upgrade --install mongodb .
+  #kubcetl get pods
+  #kubcetl get svc
+
+  

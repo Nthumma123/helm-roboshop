@@ -1,0 +1,5 @@
+deployment:
+  replicas: "1"
+  imageVersion: "1.4.0"
+  imageName: "nthumma12/mongodb"
+
